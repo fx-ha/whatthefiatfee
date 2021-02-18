@@ -13,9 +13,9 @@ function Infobox({
 }): JSX.Element {
   return (
     <div className="mb-4">
-      Last updated: {currentData[0].updated_at} UTC
-      <br />
       Bitcoin fee estimation in {currency.toUpperCase()}
+      <br />
+      Last updated: {currentData[0].updated_at} UTC
       <br />
       Current Bitcoin price: ${currentData[0].usd}
     </div>
