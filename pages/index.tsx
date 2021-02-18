@@ -23,6 +23,11 @@ export default function Home({
       <Head>
         <title>WhatTheFiatFee</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="og:title" content="WhatTheFiatFee" />
+        <meta
+          name="description"
+          content="Bitcoin fee estimation in USD for a median transaction size"
+        />
       </Head>
 
       <main>
