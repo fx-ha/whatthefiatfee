@@ -11,8 +11,6 @@ function Infobox({
   }[]
   currency: string
 }): JSX.Element {
-  console.log(currency)
-
   return (
     <div className="mb-4">
       Last updated: {currentData[0].updated_at} UTC

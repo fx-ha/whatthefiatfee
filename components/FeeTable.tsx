@@ -15,8 +15,6 @@ function FeeTable({
   }[]
   currency: string
 }): JSX.Element {
-  console.log(currency)
-
   return (
     <Table bordered size="sm">
       <thead>
