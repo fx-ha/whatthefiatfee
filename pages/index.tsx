@@ -35,7 +35,7 @@ export default function Home({
       <main>
         <Infobox currentData={currentData} currency="usd" />
         <Form.Group controlId="feeRange">
-          <Form.Label>Transaction size: {state.txnSize} vbyte</Form.Label>
+          <Form.Label>Transaction size: {state.txnSize} vbytes</Form.Label>
           <Form.Control
             type="range"
             min="100"
