@@ -23,6 +23,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - create chart for historical data
     - getstaticprops, revalidate 6(?) hours
 - bitcon icons
+- footer: source
 
 ## Tools
 - Bootstrap
