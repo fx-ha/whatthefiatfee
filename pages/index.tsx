@@ -4,6 +4,8 @@ import { GetStaticProps } from 'next'
 import Layout from '../components/Layout'
 import Infobox from '../components/Infobox'
 import FeeTable from '../components/FeeTable'
+import { Form } from 'react-bootstrap'
+import React from 'react'
 
 export default function Home({
   fees,
@@ -18,6 +20,9 @@ export default function Home({
     updated_at: string
   }[]
 }): JSX.Element {
+  const [state, setState] = React.useState({
+    txnSize: Math.round(currentData[0].median_txn_size),
+  })
   return (
     <Layout>
       <Head>
@@ -29,10 +34,30 @@ export default function Home({
 
       <main>
         <Infobox currentData={currentData} currency="usd" />
-        <FeeTable fees={fees} currentData={currentData} currency="usd" />
+        <Form.Group controlId="feeRange">
+          <Form.Label>Transaction size: {state.txnSize} vbyte</Form.Label>
+          <Form.Control
+            type="range"
+            min="100"
+            max="1000"
+            value={state.txnSize}
+            step="25"
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <FeeTable
+          fees={fees}
+          currentData={currentData}
+          txnSize={state.txnSize}
+          currency="usd"
+        />
       </main>
     </Layout>
   )
+
+  function handleChange(evt: { target: { value: string } }) {
+    setState({ txnSize: parseInt(evt.target.value) })
+  }
 }
 
 export const getStaticProps: GetStaticProps = async () => {

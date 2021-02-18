@@ -34,3 +34,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Done
 - create table
+- transaction size slider
+    - default: 400
+    - min: 100
+    - max: 1000

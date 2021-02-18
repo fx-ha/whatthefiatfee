@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table'
 function FeeTable({
   fees,
   currentData,
+  txnSize,
   currency,
 }: {
   fees: { fee: number }[]
@@ -13,6 +14,7 @@ function FeeTable({
     median_txn_size: number
     updated_at: string
   }[]
+  txnSize: number
   currency: string
 }): JSX.Element {
   return (
@@ -33,12 +35,7 @@ function FeeTable({
           {fees.slice(0, 5).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                $
-                {convertToFiat(
-                  fee.fee,
-                  currentData[0].median_txn_size,
-                  currentData[0].usd
-                )}
+                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
               </td>
             )
           })}
@@ -48,12 +45,7 @@ function FeeTable({
           {fees.slice(5, 10).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                $
-                {convertToFiat(
-                  fee.fee,
-                  currentData[0].median_txn_size,
-                  currentData[0].usd
-                )}
+                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
               </td>
             )
           })}
@@ -63,12 +55,7 @@ function FeeTable({
           {fees.slice(10, 15).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                $
-                {convertToFiat(
-                  fee.fee,
-                  currentData[0].median_txn_size,
-                  currentData[0].usd
-                )}
+                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
               </td>
             )
           })}
@@ -78,12 +65,7 @@ function FeeTable({
           {fees.slice(15, 20).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                $
-                {convertToFiat(
-                  fee.fee,
-                  currentData[0].median_txn_size,
-                  currentData[0].usd
-                )}
+                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
               </td>
             )
           })}
@@ -93,12 +75,7 @@ function FeeTable({
           {fees.slice(20, 25).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                $
-                {convertToFiat(
-                  fee.fee,
-                  currentData[0].median_txn_size,
-                  currentData[0].usd
-                )}
+                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
               </td>
             )
           })}
@@ -108,12 +85,7 @@ function FeeTable({
           {fees.slice(25, 30).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                $
-                {convertToFiat(
-                  fee.fee,
-                  currentData[0].median_txn_size,
-                  currentData[0].usd
-                )}
+                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
               </td>
             )
           })}
@@ -123,12 +95,7 @@ function FeeTable({
           {fees.slice(30, 35).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                $
-                {convertToFiat(
-                  fee.fee,
-                  currentData[0].median_txn_size,
-                  currentData[0].usd
-                )}
+                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
               </td>
             )
           })}
@@ -138,12 +105,7 @@ function FeeTable({
           {fees.slice(35, 40).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                $
-                {convertToFiat(
-                  fee.fee,
-                  currentData[0].median_txn_size,
-                  currentData[0].usd
-                )}
+                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
               </td>
             )
           })}
@@ -153,12 +115,7 @@ function FeeTable({
           {fees.slice(40, 45).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                $
-                {convertToFiat(
-                  fee.fee,
-                  currentData[0].median_txn_size,
-                  currentData[0].usd
-                )}
+                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
               </td>
             )
           })}
@@ -168,12 +125,7 @@ function FeeTable({
           {fees.slice(45, 50).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                $
-                {convertToFiat(
-                  fee.fee,
-                  currentData[0].median_txn_size,
-                  currentData[0].usd
-                )}
+                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
               </td>
             )
           })}
@@ -183,12 +135,7 @@ function FeeTable({
           {fees.slice(50, 55).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                $
-                {convertToFiat(
-                  fee.fee,
-                  currentData[0].median_txn_size,
-                  currentData[0].usd
-                )}
+                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
               </td>
             )
           })}
