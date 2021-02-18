@@ -15,7 +15,7 @@ function Infobox({
 
   return (
     <div className="mb-4">
-      Last updated: {currentData[0].updated_at}
+      Last updated: {currentData[0].updated_at} UTC
       <br />
       Bitcoin fee rate estimation in USD for a median transaction size of 500
       bytes.
