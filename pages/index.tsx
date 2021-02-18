@@ -24,10 +24,7 @@ export default function Home({
         <title>WhatTheFiatFee</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="og:title" content="WhatTheFiatFee" />
-        <meta
-          name="description"
-          content="Bitcoin fee estimation in USD for a median transaction size"
-        />
+        <meta name="description" content="Bitcoin fee estimation in fiat" />
       </Head>
 
       <main>
@@ -52,6 +49,6 @@ export const getStaticProps: GetStaticProps = async () => {
       fees,
       currentData,
     },
-    revalidate: 3000,
+    revalidate: 2000,
   }
 }
