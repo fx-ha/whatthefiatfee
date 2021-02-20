@@ -74,6 +74,6 @@ export const getStaticProps: GetStaticProps = async () => {
       fees,
       currentData,
     },
-    //revalidate: 2000,
+    revalidate: 1800,
   }
 }
