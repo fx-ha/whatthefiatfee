@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table'
 
-function FeeTable({
+const FeeTable = ({
   fees,
   currentData,
   txnSize,
@@ -16,7 +16,7 @@ function FeeTable({
   }[]
   txnSize: number
   currency: string
-}): JSX.Element {
+}): JSX.Element => {
   let locale = 'en-US'
   let fiatValue = currentData[0].usd
   switch (currency) {
@@ -42,10 +42,10 @@ function FeeTable({
     locale: string
   ): string => {
     return currency === 'btc'
-      ? (fee * medianTxnSize).toLocaleString(locale, {
+      ? ((fee * medianTxnSize) / 100000000).toLocaleString(locale, {
           minimumFractionDigits: 5,
           maximumFractionDigits: 5,
-        })}
+        })
       : ((fee * medianTxnSize * fiatValue) / 100000000).toLocaleString(locale, {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,

@@ -15,7 +15,7 @@ import Layout from '../components/Layout'
 import FeeTable from '../components/FeeTable'
 import Infobox from '../components/Infobox'
 
-export default function Home({
+const Home = ({
   fees,
   currentData,
 }: {
@@ -27,7 +27,7 @@ export default function Home({
     median_txn_size: number
     updated_at: string
   }[]
-}): JSX.Element {
+}): JSX.Element => {
   const [txnSize, setTxnSize] = useState(225)
   const [currency, setCurrency] = useState('usd')
 
@@ -108,3 +108,5 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 1800,
   }
 }
+
+export default Home

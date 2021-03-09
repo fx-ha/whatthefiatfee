@@ -1,4 +1,4 @@
-function Infobox({
+const Infobox = ({
   currentData,
   currency,
 }: {
@@ -10,7 +10,7 @@ function Infobox({
     updated_at: string
   }[]
   currency: string
-}): JSX.Element {
+}): JSX.Element => {
   let fiatValue = `$${currentData[0].usd}`
   switch (currency) {
     case 'eur':
