@@ -21,7 +21,7 @@ export default function Home({
   }[]
 }): JSX.Element {
   const [state, setState] = React.useState({
-    txnSize: Math.round(currentData[0].median_txn_size),
+    txnSize: 225,
   })
   return (
     <Layout>
