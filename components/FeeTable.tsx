@@ -42,10 +42,10 @@ function FeeTable({
     locale: string
   ): string => {
     return currency === 'btc'
-      ? `丰${(fee * medianTxnSize).toLocaleString(locale, {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        })}`
+      ? (fee * medianTxnSize).toLocaleString(locale, {
+          minimumFractionDigits: 5,
+          maximumFractionDigits: 5,
+        })}
       : ((fee * medianTxnSize * fiatValue) / 100000000).toLocaleString(locale, {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
