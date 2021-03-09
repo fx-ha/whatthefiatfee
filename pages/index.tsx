@@ -42,7 +42,7 @@ export default function Home({
 
       <main>
         <Row>
-          <Col xs={8}>
+          <Col xs={7}>
             <h1>Bitcoin fee estimation</h1>
           </Col>
           <Col className="text-right">
@@ -53,6 +53,9 @@ export default function Home({
               defaultValue="usd"
               onChange={(e) => setCurrency(e)}
             >
+              <ToggleButton variant="outline-secondary" value="btc">
+                ₿
+              </ToggleButton>
               <ToggleButton variant="outline-secondary" value="usd">
                 $
               </ToggleButton>

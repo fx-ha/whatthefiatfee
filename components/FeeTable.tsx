@@ -35,7 +35,7 @@ function FeeTable({
   }
 
   return (
-    <Table bordered size="sm">
+    <Table bordered size="sm" responsive="sm">
       <thead>
         <tr>
           <th></th>
@@ -169,15 +169,17 @@ const convertToFiat = (
   currency: string,
   locale: string
 ): string => {
-  return ((fee * medianTxnSize * fiatValue) / 100000000).toLocaleString(
-    locale,
-    {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-      style: 'currency',
-      currency: currency,
-    }
-  )
+  return currency === 'btc'
+    ? `${(fee * medianTxnSize).toLocaleString(locale, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      })} sat`
+    : ((fee * medianTxnSize * fiatValue) / 100000000).toLocaleString(locale, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        style: 'currency',
+        currency: currency,
+      })
 }
 
 export default FeeTable
