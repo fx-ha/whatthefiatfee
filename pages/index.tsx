@@ -43,7 +43,7 @@ export default function Home({
       <main>
         <Row>
           <Col xs={8}>
-            <h1>BTC fee estimation in {currency.toUpperCase()}</h1>
+            <h1>Bitcoin fee estimation</h1>
           </Col>
           <Col className="text-right">
             <ToggleButtonGroup
