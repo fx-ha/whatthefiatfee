@@ -25,7 +25,6 @@ npm start
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## TO DO
-- refactor table
 - create chart for historical data
     - getstaticprops, revalidate 6(?) hours
 - footer: source
@@ -49,3 +48,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
     - max: 1000
 - bitcon icons    
 - create fiat selection
+- refactor table

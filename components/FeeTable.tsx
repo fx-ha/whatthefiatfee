@@ -34,6 +34,46 @@ function FeeTable({
       break
   }
 
+  const convertToFiat = (
+    fee: number,
+    medianTxnSize: number,
+    fiatValue: number,
+    currency: string,
+    locale: string
+  ): string => {
+    return currency === 'btc'
+      ? `${(fee * medianTxnSize).toLocaleString(locale, {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        })} sat`
+      : ((fee * medianTxnSize * fiatValue) / 100000000).toLocaleString(locale, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+          style: 'currency',
+          currency: currency,
+        })
+  }
+
+  const tableRows = {
+    '0.5h': [],
+    '1h': [],
+    '1.5h': [],
+    '2h': [],
+    '3h': [],
+    '4h': [],
+    '6h': [],
+    '8h': [],
+    '12h': [],
+    '16h': [],
+    '24h': [],
+  }
+
+  let counter = 0
+  Object.entries(tableRows).forEach(([key]) => {
+    fees.slice(counter, counter + 5).map((fee) => tableRows[key].push(fee.fee))
+    counter += 5
+  })
+
   return (
     <Table bordered size="sm" responsive="sm">
       <thead>
@@ -47,139 +87,25 @@ function FeeTable({
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th>0.5</th>
-          {fees.slice(0, 5).map((fee: { fee: number }, i: number) => {
+        {Object.entries(tableRows).map(
+          ([tableHeader, tableData], tableRowIndex) => {
             return (
-              <td key={i}>
-                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
-              </td>
+              <tr key={tableRowIndex}>
+                <th>{tableHeader}</th>
+                {tableData.map((fee, tableDataIndex) => {
+                  return (
+                    <td key={tableDataIndex}>
+                      {convertToFiat(fee, txnSize, fiatValue, currency, locale)}
+                    </td>
+                  )
+                })}
+              </tr>
             )
-          })}
-        </tr>
-        <tr>
-          <th>1h</th>
-          {fees.slice(5, 10).map((fee: { fee: number }, i: number) => {
-            return (
-              <td key={i}>
-                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
-              </td>
-            )
-          })}
-        </tr>
-        <tr>
-          <th>1.5</th>
-          {fees.slice(10, 15).map((fee: { fee: number }, i: number) => {
-            return (
-              <td key={i}>
-                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
-              </td>
-            )
-          })}
-        </tr>
-        <tr>
-          <th>2h</th>
-          {fees.slice(15, 20).map((fee: { fee: number }, i: number) => {
-            return (
-              <td key={i}>
-                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
-              </td>
-            )
-          })}
-        </tr>
-        <tr>
-          <th>3h</th>
-          {fees.slice(20, 25).map((fee: { fee: number }, i: number) => {
-            return (
-              <td key={i}>
-                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
-              </td>
-            )
-          })}
-        </tr>
-        <tr>
-          <th>4h</th>
-          {fees.slice(25, 30).map((fee: { fee: number }, i: number) => {
-            return (
-              <td key={i}>
-                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
-              </td>
-            )
-          })}
-        </tr>
-        <tr>
-          <th>6h</th>
-          {fees.slice(30, 35).map((fee: { fee: number }, i: number) => {
-            return (
-              <td key={i}>
-                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
-              </td>
-            )
-          })}
-        </tr>
-        <tr>
-          <th>8h</th>
-          {fees.slice(35, 40).map((fee: { fee: number }, i: number) => {
-            return (
-              <td key={i}>
-                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
-              </td>
-            )
-          })}
-        </tr>
-        <tr>
-          <th>12h</th>
-          {fees.slice(40, 45).map((fee: { fee: number }, i: number) => {
-            return (
-              <td key={i}>
-                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
-              </td>
-            )
-          })}
-        </tr>
-        <tr>
-          <th>16h</th>
-          {fees.slice(45, 50).map((fee: { fee: number }, i: number) => {
-            return (
-              <td key={i}>
-                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
-              </td>
-            )
-          })}
-        </tr>
-        <tr>
-          <th>24h</th>
-          {fees.slice(50, 55).map((fee: { fee: number }, i: number) => {
-            return (
-              <td key={i}>
-                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
-              </td>
-            )
-          })}
-        </tr>
+          }
+        )}
       </tbody>
     </Table>
   )
-}
-
-const convertToFiat = (
-  fee: number,
-  medianTxnSize: number,
-  fiatValue: number,
-  currency: string,
-  locale: string
-): string => {
-  return currency === 'btc'
-    ? `${(fee * medianTxnSize).toLocaleString(locale, {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      })} sat`
-    : ((fee * medianTxnSize * fiatValue) / 100000000).toLocaleString(locale, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-        style: 'currency',
-        currency: currency,
-      })
 }
 
 export default FeeTable
