@@ -1,11 +1,19 @@
+import { useState } from 'react'
+
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 
+import {
+  Col,
+  Form,
+  Row,
+  ToggleButton,
+  ToggleButtonGroup,
+} from 'react-bootstrap'
+
 import Layout from '../components/Layout'
-import Infobox from '../components/Infobox'
 import FeeTable from '../components/FeeTable'
-import { Form } from 'react-bootstrap'
-import React from 'react'
+import Infobox from '../components/Infobox'
 
 export default function Home({
   fees,
@@ -20,9 +28,9 @@ export default function Home({
     updated_at: string
   }[]
 }): JSX.Element {
-  const [state, setState] = React.useState({
-    txnSize: 225,
-  })
+  const [txnSize, setTxnSize] = useState(225)
+  const [currency, setCurrency] = useState('usd')
+
   return (
     <Layout>
       <Head>
@@ -33,31 +41,51 @@ export default function Home({
       </Head>
 
       <main>
-        <Infobox currentData={currentData} currency="usd" />
+        <Row>
+          <Col xs={8}>
+            <h1>BTC fee estimation in {currency.toUpperCase()}</h1>
+          </Col>
+          <Col className="text-right">
+            <ToggleButtonGroup
+              type="radio"
+              name="options"
+              size="sm"
+              defaultValue="usd"
+              onChange={(e) => setCurrency(e)}
+            >
+              <ToggleButton variant="outline-secondary" value="usd">
+                $
+              </ToggleButton>
+              <ToggleButton variant="outline-secondary" value="eur">
+                €
+              </ToggleButton>
+              <ToggleButton variant="outline-secondary" value="gbp">
+                £
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Col>
+        </Row>
+        <Infobox currentData={currentData} currency={currency} />
         <Form.Group controlId="feeRange">
-          <Form.Label>Transaction size: {state.txnSize} vbytes</Form.Label>
+          <Form.Label>Transaction size: {txnSize} vbytes</Form.Label>
           <Form.Control
             type="range"
             min="100"
             max="1000"
-            value={state.txnSize}
+            value={txnSize}
             step="25"
-            onChange={handleChange}
+            onChange={(e) => setTxnSize(Number(e.target.value))}
           />
         </Form.Group>
         <FeeTable
           fees={fees}
           currentData={currentData}
-          txnSize={state.txnSize}
-          currency="usd"
+          txnSize={txnSize}
+          currency={currency}
         />
       </main>
     </Layout>
   )
-
-  function handleChange(evt: { target: { value: string } }) {
-    setState({ txnSize: parseInt(evt.target.value) })
-  }
 }
 
 export const getStaticProps: GetStaticProps = async () => {

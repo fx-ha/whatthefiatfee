@@ -9,7 +9,10 @@ function Layout({ children }: { children: React.ReactNode }): JSX.Element {
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content="Bitcoin transaction fees in fiat" />
+        <meta
+          name="description"
+          content="Bitcoin transaction fee estimation in fiat"
+        />
         <meta name="og:title" content={siteTitle} />
       </Head>
 

@@ -11,13 +11,23 @@ function Infobox({
   }[]
   currency: string
 }): JSX.Element {
+  let fiatValue = `$${currentData[0].usd}`
+  switch (currency) {
+    case 'eur':
+      fiatValue = `${currentData[0].eur} €`
+      break
+    case 'gbp':
+      fiatValue = `£${currentData[0].eur}`
+      break
+    default:
+      fiatValue = `$${currentData[0].usd}`
+      break
+  }
   return (
-    <div className="mb-4">
-      Bitcoin fee estimation in {currency.toUpperCase()}
-      <br />
+    <div className="mt-2 mb-4">
       Last updated: {currentData[0].updated_at} UTC
       <br />
-      Current Bitcoin price: ${currentData[0].usd}
+      Current Bitcoin price: {fiatValue}
     </div>
   )
 }

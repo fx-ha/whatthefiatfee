@@ -17,6 +17,23 @@ function FeeTable({
   txnSize: number
   currency: string
 }): JSX.Element {
+  let locale = 'en-US'
+  let fiatValue = currentData[0].usd
+  switch (currency) {
+    case 'eur':
+      locale = 'de-DE'
+      fiatValue = currentData[0].eur
+      break
+    case 'gbp':
+      locale = 'en-GB'
+      fiatValue = currentData[0].gbp
+      break
+    default:
+      locale = 'en-US'
+      fiatValue = currentData[0].usd
+      break
+  }
+
   return (
     <Table bordered size="sm">
       <thead>
@@ -35,7 +52,7 @@ function FeeTable({
           {fees.slice(0, 5).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
+                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
               </td>
             )
           })}
@@ -45,7 +62,7 @@ function FeeTable({
           {fees.slice(5, 10).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
+                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
               </td>
             )
           })}
@@ -55,7 +72,7 @@ function FeeTable({
           {fees.slice(10, 15).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
+                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
               </td>
             )
           })}
@@ -65,7 +82,7 @@ function FeeTable({
           {fees.slice(15, 20).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
+                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
               </td>
             )
           })}
@@ -75,7 +92,7 @@ function FeeTable({
           {fees.slice(20, 25).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
+                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
               </td>
             )
           })}
@@ -85,7 +102,7 @@ function FeeTable({
           {fees.slice(25, 30).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
+                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
               </td>
             )
           })}
@@ -95,7 +112,7 @@ function FeeTable({
           {fees.slice(30, 35).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
+                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
               </td>
             )
           })}
@@ -105,7 +122,7 @@ function FeeTable({
           {fees.slice(35, 40).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
+                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
               </td>
             )
           })}
@@ -115,7 +132,7 @@ function FeeTable({
           {fees.slice(40, 45).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
+                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
               </td>
             )
           })}
@@ -125,7 +142,7 @@ function FeeTable({
           {fees.slice(45, 50).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
+                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
               </td>
             )
           })}
@@ -135,7 +152,7 @@ function FeeTable({
           {fees.slice(50, 55).map((fee: { fee: number }, i: number) => {
             return (
               <td key={i}>
-                ${convertToFiat(fee.fee, txnSize, currentData[0].usd)}
+                {convertToFiat(fee.fee, txnSize, fiatValue, currency, locale)}
               </td>
             )
           })}
@@ -145,17 +162,21 @@ function FeeTable({
   )
 }
 
-function convertToFiat(
+const convertToFiat = (
   fee: number,
   medianTxnSize: number,
-  usd: number
-): number {
-  return round((fee * medianTxnSize * usd) / 100000000, 2)
-}
-
-function round(value: number, decimals: number): number {
-  return Number(
-    Math.round(parseFloat(value + 'e' + decimals)) + 'e-' + decimals
+  fiatValue: number,
+  currency: string,
+  locale: string
+): string => {
+  return ((fee * medianTxnSize * fiatValue) / 100000000).toLocaleString(
+    locale,
+    {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+      style: 'currency',
+      currency: currency,
+    }
   )
 }
 
