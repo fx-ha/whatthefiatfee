@@ -12,6 +12,16 @@ Run the development server:
 npm run dev
 ```
 
+Builds the app for production:
+```bash
+npm run build
+```
+
+Run the built app in production mode:
+```bash
+npm start
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## TO DO
