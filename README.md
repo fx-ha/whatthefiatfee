@@ -25,6 +25,7 @@ npm start
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## TO DO
+- separate components for tablerows, txnSize slider and buttongroup (?)
 - create chart for historical data
     - getstaticprops, revalidate 6(?) hours
 - footer: source
@@ -49,3 +50,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - bitcon icons    
 - create fiat selection
 - refactor table
+- format current bitcoin price to local string

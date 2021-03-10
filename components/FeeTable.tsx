@@ -28,10 +28,6 @@ const FeeTable = ({
       locale = 'en-GB'
       fiatValue = currentData[0].gbp
       break
-    default:
-      locale = 'en-US'
-      fiatValue = currentData[0].usd
-      break
   }
 
   const convertToFiat = (
@@ -47,8 +43,6 @@ const FeeTable = ({
           maximumFractionDigits: 5,
         })
       : ((fee * medianTxnSize * fiatValue) / 100000000).toLocaleString(locale, {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
           style: 'currency',
           currency: currency,
         })

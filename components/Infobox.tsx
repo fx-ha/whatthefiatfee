@@ -11,20 +11,27 @@ const Infobox = ({
   }[]
   currency: string
 }): JSX.Element => {
-  let fiatValue = `$${currentData[0].usd}`
+  let fiatValue = Number(currentData[0].usd).toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'usd',
+  })
   switch (currency) {
     case 'eur':
-      fiatValue = `${currentData[0].eur} €`
+      fiatValue = Number(currentData[0].usd).toLocaleString('de-DE', {
+        style: 'currency',
+        currency: currency,
+      })
       break
     case 'gbp':
-      fiatValue = `£${currentData[0].eur}`
-      break
-    default:
-      fiatValue = `$${currentData[0].usd}`
+      fiatValue = Number(currentData[0].usd).toLocaleString('en-GB', {
+        style: 'currency',
+        currency: currency,
+      })
       break
   }
+
   return (
-    <div className="mt-2 mb-4">
+    <div className="mt-4 mb-4">
       Last updated: {currentData[0].updated_at} UTC
       <br />
       Current Bitcoin price: {fiatValue}
