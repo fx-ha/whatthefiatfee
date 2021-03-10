@@ -1,6 +1,8 @@
 # whatthefiatfee-frontend
 
-## Getting Started
+## Setup
+
+Add API URL to .env.local
 
 Install dependencies:
 ```bash
@@ -25,8 +27,7 @@ npm start
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## TO DO
-- separate components for tablerows, txnSize slider and buttongroup (?)
-- use https://blog.alanmontgomery.co.uk/using-react-context-api-with-nextjs
+- separate components for tablerows, txnSize slider
 - footer: source
 - pwa
 
@@ -54,3 +55,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - format current bitcoin price to local string
 - create chart for historical data
     - getstaticprops, revalidate 6(?) hours
+- use https://blog.alanmontgomery.co.uk/using-react-context-api-with-nextjs
+- separate components for buttongroup
