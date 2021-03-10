@@ -5,7 +5,7 @@ import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap'
 import { FiatContext } from '../components/FiatProvider'
 
 const FiatSelection = (): JSX.Element => {
-  const { currency, updateSelection } = useContext(FiatContext)
+  const { currency, setCurrency } = useContext(FiatContext)
 
   return (
     <ToggleButtonGroup
@@ -13,7 +13,7 @@ const FiatSelection = (): JSX.Element => {
       name="options"
       size="sm"
       defaultValue={currency}
-      onChange={(e) => updateSelection(e)}
+      onChange={(e) => setCurrency(e)}
     >
       <ToggleButton variant="outline-secondary" value="btc">
         ₿
