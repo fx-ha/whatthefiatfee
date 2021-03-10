@@ -26,8 +26,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## TO DO
 - separate components for tablerows, txnSize slider and buttongroup (?)
-- create chart for historical data
-    - getstaticprops, revalidate 6(?) hours
 - footer: source
 
 ## Tools
@@ -35,6 +33,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Next.js
 - React
 - React Bootstrap
+- Recharts
 - Sass
 - Typescript
 
@@ -51,3 +50,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - create fiat selection
 - refactor table
 - format current bitcoin price to local string
+- create chart for historical data
+    - getstaticprops, revalidate 6(?) hours
