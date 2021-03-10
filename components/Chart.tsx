@@ -68,7 +68,7 @@ const Chart = (): JSX.Element => {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
-        <YAxis />
+        <YAxis width={39} />
         <Tooltip />
         <Legend />
         <Area
