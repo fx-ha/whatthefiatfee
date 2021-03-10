@@ -1,5 +1,23 @@
 import Table from 'react-bootstrap/Table'
 
+const convertToFiat = (
+  fee: number,
+  medianTxnSize: number,
+  fiatValue: number,
+  currency: string,
+  locale: string
+): string => {
+  return currency === 'btc'
+    ? ((fee * medianTxnSize) / 100000000).toLocaleString(locale, {
+        minimumFractionDigits: 5,
+        maximumFractionDigits: 5,
+      })
+    : ((fee * medianTxnSize * fiatValue) / 100000000).toLocaleString(locale, {
+        style: 'currency',
+        currency: currency,
+      })
+}
+
 const FeeTable = ({
   fees,
   currentData,
@@ -28,24 +46,6 @@ const FeeTable = ({
       locale = 'en-GB'
       fiatValue = currentData[0].gbp
       break
-  }
-
-  const convertToFiat = (
-    fee: number,
-    medianTxnSize: number,
-    fiatValue: number,
-    currency: string,
-    locale: string
-  ): string => {
-    return currency === 'btc'
-      ? ((fee * medianTxnSize) / 100000000).toLocaleString(locale, {
-          minimumFractionDigits: 5,
-          maximumFractionDigits: 5,
-        })
-      : ((fee * medianTxnSize * fiatValue) / 100000000).toLocaleString(locale, {
-          style: 'currency',
-          currency: currency,
-        })
   }
 
   const tableRows = {
