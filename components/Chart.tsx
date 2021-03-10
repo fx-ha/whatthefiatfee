@@ -1,11 +1,12 @@
 import {
   Area,
   AreaChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
 } from 'recharts'
 
 const data = [
@@ -55,44 +56,44 @@ const data = [
 
 const Chart = (): JSX.Element => {
   return (
-    <AreaChart
-      width={640}
-      height={640}
-      data={data}
-      margin={{
-        top: 10,
-        right: 30,
-        left: 0,
-        bottom: 0,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Area
-        type="monotone"
-        dataKey="slow"
-        stackId="1"
-        stroke="#5a38b1"
-        fill="#5a38b1"
-      />
-      <Area
-        type="monotone"
-        dataKey="medium"
-        stackId="1"
-        stroke="#078c76"
-        fill="#078c76"
-      />
-      <Area
-        type="monotone"
-        dataKey="fast"
-        stackId="1"
-        stroke="#e67b13"
-        fill="#e67b13"
-      />
-    </AreaChart>
+    <ResponsiveContainer width="100%" height={400} minWidth="0">
+      <AreaChart
+        data={data}
+        margin={{
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: 0,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Area
+          type="monotone"
+          dataKey="slow"
+          stackId="1"
+          stroke="#5a38b1"
+          fill="#5a38b1"
+        />
+        <Area
+          type="monotone"
+          dataKey="medium"
+          stackId="1"
+          stroke="#078c76"
+          fill="#078c76"
+        />
+        <Area
+          type="monotone"
+          dataKey="fast"
+          stackId="1"
+          stroke="#e67b13"
+          fill="#e67b13"
+        />
+      </AreaChart>
+    </ResponsiveContainer>
   )
 }
 
