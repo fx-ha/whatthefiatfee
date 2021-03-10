@@ -26,7 +26,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## TO DO
 - separate components for tablerows, txnSize slider and buttongroup (?)
+- use https://blog.alanmontgomery.co.uk/using-react-context-api-with-nextjs
 - footer: source
+- pwa
 
 ## Tools
 - Bootstrap
