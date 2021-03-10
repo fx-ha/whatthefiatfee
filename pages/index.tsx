@@ -22,7 +22,6 @@ const Home = ({
     usd: number
     eur: number
     gbp: number
-    median_txn_size: number
     updated_at: string
   }[]
 }): JSX.Element => {
