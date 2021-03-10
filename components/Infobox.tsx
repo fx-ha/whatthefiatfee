@@ -31,7 +31,7 @@ const Infobox = ({
   }
 
   return (
-    <div className="mt-4 mb-4">
+    <div>
       Last updated: {currentData[0].updated_at} UTC
       <br />
       Current Bitcoin price: {fiatValue}

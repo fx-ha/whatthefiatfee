@@ -1,17 +1,19 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 
 import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap'
 
+import { FiatContext } from '../components/FiatProvider'
+
 const FiatSelection = (): JSX.Element => {
-  const [currency, setCurrency] = useState('usd')
+  const { currency, updateSelection } = useContext(FiatContext)
 
   return (
     <ToggleButtonGroup
       type="radio"
       name="options"
       size="sm"
-      defaultValue="usd"
-      onChange={(e) => setCurrency(e)}
+      defaultValue={currency}
+      onChange={(e) => updateSelection(e)}
     >
       <ToggleButton variant="outline-secondary" value="btc">
         ₿

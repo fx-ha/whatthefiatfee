@@ -1,19 +1,17 @@
 import { useState } from 'react'
+import { useContext } from 'react'
 
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
+import Link from 'next/link'
 
-import {
-  Col,
-  Form,
-  Row,
-  ToggleButton,
-  ToggleButtonGroup,
-} from 'react-bootstrap'
+import { Col, Form, Row } from 'react-bootstrap'
 
 import Layout from '../components/Layout'
 import FeeTable from '../components/FeeTable'
 import Infobox from '../components/Infobox'
+import { FiatContext } from '../components/FiatProvider'
+import FiatSelection from '../components/FiatSelection'
 
 const Home = ({
   fees,
@@ -29,7 +27,7 @@ const Home = ({
   }[]
 }): JSX.Element => {
   const [txnSize, setTxnSize] = useState(225)
-  const [currency, setCurrency] = useState('usd')
+  const { currency } = useContext(FiatContext)
 
   return (
     <Layout>
@@ -46,29 +44,14 @@ const Home = ({
             <h1>Bitcoin fee estimation</h1>
           </Col>
           <Col className="text-right">
-            <ToggleButtonGroup
-              type="radio"
-              name="options"
-              size="sm"
-              defaultValue="usd"
-              onChange={(e) => setCurrency(e)}
-            >
-              <ToggleButton variant="outline-secondary" value="btc">
-                ₿
-              </ToggleButton>
-              <ToggleButton variant="outline-secondary" value="usd">
-                $
-              </ToggleButton>
-              <ToggleButton variant="outline-secondary" value="eur">
-                €
-              </ToggleButton>
-              <ToggleButton variant="outline-secondary" value="gbp">
-                £
-              </ToggleButton>
-            </ToggleButtonGroup>
+            <FiatSelection />
           </Col>
         </Row>
-        <Infobox currentData={currentData} currency={currency} />
+        <Row className="mt-4 mb-4">
+          <Col>
+            <Infobox currentData={currentData} currency={currency} />
+          </Col>
+        </Row>
         <Form.Group controlId="feeRange">
           <Form.Label>Transaction size: {txnSize} vbytes</Form.Label>
           <Form.Control
@@ -86,6 +69,13 @@ const Home = ({
           txnSize={txnSize}
           currency={currency}
         />
+        <Row>
+          <Col>
+            <Link href="/history">
+              <a>History</a>
+            </Link>
+          </Col>
+        </Row>
       </main>
     </Layout>
   )
