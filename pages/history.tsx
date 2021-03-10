@@ -1,15 +1,17 @@
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
+import { GetStaticProps } from 'next'
 import Link from 'next/link'
 
 import { Col, Row } from 'react-bootstrap'
 
 import Layout from '../components/Layout'
 import FiatSelection from '../components/FiatSelection'
+import TxnSizeSlider from '../components/TxnSizeSlider'
 
 const Chart = dynamic(() => import('../components/Chart'), { ssr: false })
 
-const history = (): JSX.Element => {
+const history = ({ historicalData }): JSX.Element => {
   return (
     <Layout>
       <Head>
@@ -28,21 +30,45 @@ const history = (): JSX.Element => {
             <FiatSelection />
           </Col>
         </Row>
-        <Row className="mt-4 mb-4">
-          <Col>
-            <Chart />
+        <Row className="mt-2 mb-3">
+          <Col xs={8}>
+            <p>
+              Last update: ... UTC
+              <br />
+              {'1 BTC = '}
+            </p>
+          </Col>
+          <Col xs={4} className="text-right">
+            <Link href="/">
+              <a className="btn btn-sm btn-outline-secondary" role="button">
+                Future
+              </a>
+            </Link>
           </Col>
         </Row>
+        <TxnSizeSlider />
         <Row>
           <Col>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
+            <Chart historicalData={historicalData} />
           </Col>
         </Row>
       </main>
     </Layout>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await fetch(
+    `${process.env.API_URL}/whatthefiatfee/historicaldata/`
+  )
+  const historicalData = await res.json()
+
+  return {
+    props: {
+      historicalData,
+    },
+    revalidate: 21600, // every six hours
+  }
 }
 
 export default history

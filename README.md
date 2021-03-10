@@ -27,7 +27,7 @@ npm start
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## TO DO
-- separate components for tablerows, txnSize slider
+- separate components for tablerows
 - footer: source
 - pwa
 
@@ -56,4 +56,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - create chart for historical data
     - getstaticprops, revalidate 6(?) hours
 - use https://blog.alanmontgomery.co.uk/using-react-context-api-with-nextjs
-- separate components for buttongroup
+- separate components for buttongroup, txnSize slider

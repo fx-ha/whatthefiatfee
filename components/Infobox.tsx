@@ -30,11 +30,11 @@ const Infobox = ({
   }
 
   return (
-    <div>
-      Last updated: {currentData[0].updated_at} UTC
+    <p>
+      Last update: {currentData[0].updated_at} UTC
       <br />
-      Current Bitcoin price: {fiatValue}
-    </div>
+      {`1 BTC = ${fiatValue}`}
+    </p>
   )
 }
 

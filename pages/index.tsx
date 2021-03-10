@@ -1,17 +1,18 @@
-import { useState } from 'react'
 import { useContext } from 'react'
 
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 
-import { Col, Form, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 
 import Layout from '../components/Layout'
 import FeeTable from '../components/FeeTable'
 import Infobox from '../components/Infobox'
-import { FiatContext } from '../components/FiatProvider'
 import FiatSelection from '../components/FiatSelection'
+import TxnSizeSlider from '../components/TxnSizeSlider'
+import { FiatContext } from '../components/FiatProvider'
+import { TxnSizeContext } from '../components/TxnSizeProvider'
 
 const Home = ({
   fees,
@@ -25,8 +26,8 @@ const Home = ({
     updated_at: string
   }[]
 }): JSX.Element => {
-  const [txnSize, setTxnSize] = useState(225)
   const { currency } = useContext(FiatContext)
+  const { txnSize } = useContext(TxnSizeContext)
 
   return (
     <Layout>
@@ -46,35 +47,25 @@ const Home = ({
             <FiatSelection />
           </Col>
         </Row>
-        <Row className="mt-4 mb-4">
+        <Row className="mt-2 mb-3">
           <Col>
             <Infobox currentData={currentData} currency={currency} />
           </Col>
+          <Col className="text-right">
+            <Link href="/history">
+              <a className="btn btn-sm btn-outline-secondary" role="button">
+                History
+              </a>
+            </Link>
+          </Col>
         </Row>
-        <Form.Group controlId="feeRange">
-          <Form.Label>Transaction size: {txnSize} vbytes</Form.Label>
-          <Form.Control
-            type="range"
-            min="100"
-            max="1000"
-            value={txnSize}
-            step="25"
-            onChange={(e) => setTxnSize(Number(e.target.value))}
-          />
-        </Form.Group>
+        <TxnSizeSlider />
         <FeeTable
           fees={fees}
           currentData={currentData}
           txnSize={txnSize}
           currency={currency}
         />
-        <Row>
-          <Col>
-            <Link href="/history">
-              <a>History</a>
-            </Link>
-          </Col>
-        </Row>
       </main>
     </Layout>
   )
