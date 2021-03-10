@@ -84,24 +84,24 @@ const Chart = ({ historicalData }): JSX.Element => {
         <Legend />
         <Area
           type="monotone"
-          dataKey="slow"
-          stackId="1"
-          stroke="#5a38b1"
-          fill="#5a38b1"
+          dataKey="fast"
+          stackId="3"
+          stroke="#e67b13"
+          fill="#e67b13"
         />
         <Area
           type="monotone"
           dataKey="medium"
-          stackId="1"
+          stackId="2"
           stroke="#078c76"
           fill="#078c76"
         />
         <Area
           type="monotone"
-          dataKey="fast"
+          dataKey="slow"
           stackId="1"
-          stroke="#e67b13"
-          fill="#e67b13"
+          stroke="#5a38b1"
+          fill="#5a38b1"
         />
       </AreaChart>
     </ResponsiveContainer>
