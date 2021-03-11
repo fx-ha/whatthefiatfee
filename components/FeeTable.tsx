@@ -50,36 +50,44 @@ const FeeTable = ({
   })
 
   return (
-    <Table bordered size="sm" responsive="sm">
-      <thead>
-        <tr>
-          <th></th>
-          <th>5%</th>
-          <th>20%</th>
-          <th>50%</th>
-          <th>80%</th>
-          <th>95%</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Object.entries(tableRows).map(
-          ([tableHeader, tableData], tableRowIndex) => {
-            return (
-              <tr key={tableRowIndex}>
-                <th>{tableHeader}</th>
-                {tableData.map((fee, tableDataIndex) => {
-                  return (
-                    <td key={tableDataIndex}>
-                      {convertToFiat(calculateFee(fee, fiatValue), locale)}
-                    </td>
-                  )
-                })}
-              </tr>
-            )
-          }
-        )}
-      </tbody>
-    </Table>
+    <>
+      <Table bordered size="sm" responsive="sm" className="mb-1">
+        <thead>
+          <tr>
+            <th></th>
+            <th>5%</th>
+            <th>20%</th>
+            <th>50%</th>
+            <th>80%</th>
+            <th>95%</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(tableRows).map(
+            ([tableHeader, tableData], tableRowIndex) => {
+              return (
+                <tr key={tableRowIndex}>
+                  <th>{tableHeader}</th>
+                  {tableData.map((fee, tableDataIndex) => {
+                    return (
+                      <td key={tableDataIndex}>
+                        {convertToFiat(calculateFee(fee, fiatValue), locale)}
+                      </td>
+                    )
+                  })}
+                </tr>
+              )
+            }
+          )}
+        </tbody>
+      </Table>
+      <p className="source text-muted text-right font-weight-light">
+        Fee estimates by{' '}
+        <a href="https://whatthefee.io" className="text-reset" target="_black">
+          WhatTheFee.io
+        </a>
+      </p>
+    </>
   )
 }
 
