@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from 'date-fns'
+
 const Infobox = ({
   currentData,
   currency,
@@ -7,22 +9,22 @@ const Infobox = ({
     eur: number
     gbp: number
     updated_at: string
-  }[]
+  }
   currency: string
 }): JSX.Element => {
-  let fiatValue = Number(currentData[0].usd).toLocaleString('en-US', {
+  let fiatValue = Number(currentData.usd).toLocaleString('en-US', {
     style: 'currency',
     currency: 'usd',
   })
   switch (currency) {
     case 'eur':
-      fiatValue = Number(currentData[0].eur).toLocaleString('de-DE', {
+      fiatValue = Number(currentData.eur).toLocaleString('de-DE', {
         style: 'currency',
         currency: currency,
       })
       break
     case 'gbp':
-      fiatValue = Number(currentData[0].gbp).toLocaleString('en-GB', {
+      fiatValue = Number(currentData.gbp).toLocaleString('en-GB', {
         style: 'currency',
         currency: currency,
       })
@@ -31,7 +33,10 @@ const Infobox = ({
 
   return (
     <p>
-      Last update: {currentData[0].updated_at} UTC
+      Last update:{' '}
+      {formatDistanceToNow(new Date(currentData.updated_at), {
+        addSuffix: true,
+      })}
       <br />
       {`1 BTC = ${fiatValue}`}
     </p>

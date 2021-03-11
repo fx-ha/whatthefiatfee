@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { GetStaticProps } from 'next'
@@ -8,10 +10,31 @@ import { Col, Row } from 'react-bootstrap'
 import Layout from '../components/Layout'
 import FiatSelection from '../components/FiatSelection'
 import TxnSizeSlider from '../components/TxnSizeSlider'
+import Infobox from '../components/Infobox'
+import { FiatContext } from '../components/FiatProvider'
 
 const Chart = dynamic(() => import('../components/Chart'), { ssr: false })
 
-const history = ({ historicalData }): JSX.Element => {
+const history = ({
+  historicalData,
+}: {
+  historicalData: {
+    usd: number
+    eur: number
+    gbp: number
+    date: string
+    min_fee: number
+    max_fee: number
+    median_fee: number
+  }[]
+}): JSX.Element => {
+  const { currency } = useContext(FiatContext)
+  const currentData = {
+    usd: historicalData[0].usd,
+    eur: historicalData[0].eur,
+    gbp: historicalData[0].gbp,
+    updated_at: historicalData[0].date,
+  }
   return (
     <Layout>
       <Head>
@@ -32,11 +55,7 @@ const history = ({ historicalData }): JSX.Element => {
         </Row>
         <Row className="mt-2 mb-3">
           <Col xs={8}>
-            <p>
-              Last update: ... UTC
-              <br />
-              {'1 BTC = '}
-            </p>
+            <Infobox currentData={currentData} currency={currency} />
           </Col>
           <Col xs={4} className="text-right">
             <Link href="/">
