@@ -1,14 +1,10 @@
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { GetStaticProps } from 'next'
-import Link from 'next/link'
-
-import { Col, Row } from 'react-bootstrap'
 
 import Layout from '../components/Layout'
-import FiatSelection from '../components/FiatSelection'
+import Header from '../components/Header'
 import TxnSizeSlider from '../components/TxnSizeSlider'
-import Infobox from '../components/Infobox'
 
 const Chart = dynamic(() => import('../components/Chart'), { ssr: false })
 
@@ -41,32 +37,14 @@ const history = ({
       </Head>
 
       <main>
-        <Row>
-          <Col xs={7}>
-            <h1>Bitcoin fee history</h1>
-          </Col>
-          <Col className="text-right">
-            <FiatSelection />
-          </Col>
-        </Row>
-        <Row className="mt-2 mb-3">
-          <Col xs={8}>
-            <Infobox currentData={currentData} />
-          </Col>
-          <Col xs={4} className="text-right">
-            <Link href="/">
-              <a className="btn btn-sm btn-outline-secondary" role="button">
-                Future
-              </a>
-            </Link>
-          </Col>
-        </Row>
+        <Header
+          currentData={currentData}
+          heading="BTC fee history"
+          btnText="Future"
+          href="/"
+        />
         <TxnSizeSlider />
-        <Row>
-          <Col>
-            <Chart historicalData={historicalData} />
-          </Col>
-        </Row>
+        <Chart historicalData={historicalData} />
       </main>
     </Layout>
   )

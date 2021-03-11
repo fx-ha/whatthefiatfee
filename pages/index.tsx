@@ -2,14 +2,10 @@ import { useContext } from 'react'
 
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
-import Link from 'next/link'
-
-import { Col, Row } from 'react-bootstrap'
 
 import Layout from '../components/Layout'
+import Header from '../components/Header'
 import FeeTable from '../components/FeeTable'
-import Infobox from '../components/Infobox'
-import FiatSelection from '../components/FiatSelection'
 import TxnSizeSlider from '../components/TxnSizeSlider'
 import { FiatContext } from '../components/FiatProvider'
 import { TxnSizeContext } from '../components/TxnSizeProvider'
@@ -39,26 +35,12 @@ const Home = ({
       </Head>
 
       <main>
-        <Row>
-          <Col xs={7}>
-            <h1>Bitcoin fee estimation</h1>
-          </Col>
-          <Col className="text-right">
-            <FiatSelection />
-          </Col>
-        </Row>
-        <Row className="mt-2 mb-3">
-          <Col>
-            <Infobox currentData={currentData[0]} />
-          </Col>
-          <Col className="text-right">
-            <Link href="/history">
-              <a className="btn btn-sm btn-outline-secondary" role="button">
-                History
-              </a>
-            </Link>
-          </Col>
-        </Row>
+        <Header
+          currentData={currentData[0]}
+          heading="BTC fee estimation"
+          btnText="History"
+          href="/history"
+        />
         <TxnSizeSlider />
         <FeeTable
           fees={fees}
