@@ -5,21 +5,14 @@ import { GetStaticProps } from 'next'
 import Layout from '../components/Layout'
 import Header from '../components/Header'
 import TxnSizeSlider from '../components/TxnSizeSlider'
+import { HistoricalDataType } from '../lib/types'
 
 const Chart = dynamic(() => import('../components/Chart'), { ssr: false })
 
 const history = ({
   historicalData,
 }: {
-  historicalData: {
-    usd: number
-    eur: number
-    gbp: number
-    date: string
-    min_fee: number
-    max_fee: number
-    median_fee: number
-  }[]
+  historicalData: HistoricalDataType[]
 }): JSX.Element => {
   const currentData = {
     usd: historicalData[0].usd,

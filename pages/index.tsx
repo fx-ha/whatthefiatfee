@@ -9,18 +9,14 @@ import FeeTable from '../components/FeeTable'
 import TxnSizeSlider from '../components/TxnSizeSlider'
 import { FiatContext } from '../components/FiatProvider'
 import { TxnSizeContext } from '../components/TxnSizeProvider'
+import { CurrentDataType } from '../lib/types'
 
 const Home = ({
   fees,
   currentData,
 }: {
   fees: { fee: number }[]
-  currentData: {
-    usd: number
-    eur: number
-    gbp: number
-    updated_at: string
-  }[]
+  currentData: CurrentDataType[]
 }): JSX.Element => {
   const { currency } = useContext(FiatContext)
   const { txnSize } = useContext(TxnSizeContext)

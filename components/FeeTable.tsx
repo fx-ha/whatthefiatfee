@@ -2,20 +2,16 @@ import { useContext } from 'react'
 
 import Table from 'react-bootstrap/Table'
 
-import { calculateFee, convertToFiat } from '../lib/feeCalculation'
+import { calculateFee, convertToFiat } from '../lib/calculator'
 import { FiatContext } from '../components/FiatProvider'
+import { CurrentDataType } from '../lib/types'
 
 const FeeTable = ({
   fees,
   currentData,
 }: {
   fees: { fee: number }[]
-  currentData: {
-    usd: number
-    eur: number
-    gbp: number
-    updated_at: string
-  }[]
+  currentData: CurrentDataType[]
   txnSize: number
   currency: string
 }): JSX.Element => {

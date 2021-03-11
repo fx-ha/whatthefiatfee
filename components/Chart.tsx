@@ -11,21 +11,14 @@ import {
   YAxis,
 } from 'recharts'
 
-import { calculateFee } from '../lib/feeCalculation'
+import { calculateFee } from '../lib/calculator'
 import { FiatContext } from '../components/FiatProvider'
+import { HistoricalDataType } from '../lib/types'
 
 const Chart = ({
   historicalData,
 }: {
-  historicalData: {
-    usd: number
-    eur: number
-    gbp: number
-    date: string
-    min_fee: number
-    max_fee: number
-    median_fee: number
-  }[]
+  historicalData: HistoricalDataType[]
 }): JSX.Element => {
   const { currency } = useContext(FiatContext)
 

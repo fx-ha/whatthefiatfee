@@ -4,6 +4,7 @@ import { Col, Row } from 'react-bootstrap'
 
 import FiatSelection from '../components/FiatSelection'
 import Infobox from '../components/Infobox'
+import { CurrentDataType } from '../lib/types'
 
 const Header = ({
   currentData,
@@ -11,12 +12,7 @@ const Header = ({
   btnText,
   href,
 }: {
-  currentData: {
-    usd: number
-    eur: number
-    gbp: number
-    updated_at: string
-  }
+  currentData: CurrentDataType
   heading: string
   btnText: string
   href: string

@@ -3,16 +3,12 @@ import { useContext } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 
 import { FiatContext } from '../components/FiatProvider'
+import { CurrentDataType } from '../lib/types'
 
 const Infobox = ({
   currentData,
 }: {
-  currentData: {
-    usd: number
-    eur: number
-    gbp: number
-    updated_at: string
-  }
+  currentData: CurrentDataType
 }): JSX.Element => {
   const { currency } = useContext(FiatContext)
 
