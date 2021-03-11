@@ -41,5 +41,5 @@ npm start
 > "Great Bitcoin fee website" - [Paul Sztorc](https://twitter.com/Truthcoin/status/1368965437275389953)
 
 ## TO DO
-- footer: source
+- improve y-axis on chart
 - pwa
