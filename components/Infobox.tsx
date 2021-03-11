@@ -1,8 +1,11 @@
+import { useContext } from 'react'
+
 import { formatDistanceToNow } from 'date-fns'
+
+import { FiatContext } from '../components/FiatProvider'
 
 const Infobox = ({
   currentData,
-  currency,
 }: {
   currentData: {
     usd: number
@@ -10,8 +13,9 @@ const Infobox = ({
     gbp: number
     updated_at: string
   }
-  currency: string
 }): JSX.Element => {
+  const { currency } = useContext(FiatContext)
+
   let fiatValue = Number(currentData.usd).toLocaleString('en-US', {
     style: 'currency',
     currency: 'usd',

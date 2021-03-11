@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+
 import {
   Area,
   AreaChart,
@@ -8,6 +10,9 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+
+import { calculateFee } from '../lib/feeCalculation'
+import { FiatContext } from '../components/FiatProvider'
 
 const Chart = ({
   historicalData,
@@ -22,19 +27,28 @@ const Chart = ({
     median_fee: number
   }[]
 }): JSX.Element => {
-  //  const data = []
-  // slow: convertToFiat((element.min_fee * txnSize * price) / 100000000)
-  const data = historicalData.map((element) =>
-    Object.create({
+  const { currency } = useContext(FiatContext)
+
+  const data = historicalData.map((element) => {
+    let fiatValue = element.usd
+    switch (currency) {
+      case 'eur':
+        fiatValue = element.eur
+        break
+      case 'gbp':
+        fiatValue = element.gbp
+        break
+    }
+    return Object.create({
       name: new Date(element.date).toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
       }),
-      slow: element.min_fee,
-      medium: element.median_fee,
-      fast: element.max_fee,
+      slow: calculateFee(element.min_fee, fiatValue),
+      medium: calculateFee(element.median_fee, fiatValue),
+      fast: calculateFee(element.max_fee, fiatValue),
     })
-  )
+  })
 
   return (
     <ResponsiveContainer width="100%" height={400} minWidth="0">

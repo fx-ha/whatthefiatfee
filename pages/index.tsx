@@ -49,7 +49,7 @@ const Home = ({
         </Row>
         <Row className="mt-2 mb-3">
           <Col>
-            <Infobox currentData={currentData[0]} currency={currency} />
+            <Infobox currentData={currentData[0]} />
           </Col>
           <Col className="text-right">
             <Link href="/history">

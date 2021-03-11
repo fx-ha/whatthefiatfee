@@ -1,5 +1,3 @@
-import { useContext } from 'react'
-
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { GetStaticProps } from 'next'
@@ -11,7 +9,6 @@ import Layout from '../components/Layout'
 import FiatSelection from '../components/FiatSelection'
 import TxnSizeSlider from '../components/TxnSizeSlider'
 import Infobox from '../components/Infobox'
-import { FiatContext } from '../components/FiatProvider'
 
 const Chart = dynamic(() => import('../components/Chart'), { ssr: false })
 
@@ -28,7 +25,6 @@ const history = ({
     median_fee: number
   }[]
 }): JSX.Element => {
-  const { currency } = useContext(FiatContext)
   const currentData = {
     usd: historicalData[0].usd,
     eur: historicalData[0].eur,
@@ -55,7 +51,7 @@ const history = ({
         </Row>
         <Row className="mt-2 mb-3">
           <Col xs={8}>
-            <Infobox currentData={currentData} currency={currency} />
+            <Infobox currentData={currentData} />
           </Col>
           <Col xs={4} className="text-right">
             <Link href="/">

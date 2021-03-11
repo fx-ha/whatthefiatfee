@@ -1,28 +1,13 @@
+import { useContext } from 'react'
+
 import Table from 'react-bootstrap/Table'
 
-const convertToFiat = (
-  fee: number,
-  medianTxnSize: number,
-  fiatValue: number,
-  currency: string,
-  locale: string
-): string => {
-  return currency === 'btc'
-    ? ((fee * medianTxnSize) / 100000000).toLocaleString(locale, {
-        minimumFractionDigits: 5,
-        maximumFractionDigits: 5,
-      })
-    : ((fee * medianTxnSize * fiatValue) / 100000000).toLocaleString(locale, {
-        style: 'currency',
-        currency: currency,
-      })
-}
+import { calculateFee, convertToFiat } from '../lib/feeCalculation'
+import { FiatContext } from '../components/FiatProvider'
 
 const FeeTable = ({
   fees,
   currentData,
-  txnSize,
-  currency,
 }: {
   fees: { fee: number }[]
   currentData: {
@@ -34,6 +19,7 @@ const FeeTable = ({
   txnSize: number
   currency: string
 }): JSX.Element => {
+  const { currency } = useContext(FiatContext)
   let locale = 'en-US'
   let fiatValue = currentData[0].usd
   switch (currency) {
@@ -88,7 +74,7 @@ const FeeTable = ({
                 {tableData.map((fee, tableDataIndex) => {
                   return (
                     <td key={tableDataIndex}>
-                      {convertToFiat(fee, txnSize, fiatValue, currency, locale)}
+                      {convertToFiat(calculateFee(fee, fiatValue), locale)}
                     </td>
                   )
                 })}
