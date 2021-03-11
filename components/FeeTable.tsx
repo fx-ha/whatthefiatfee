@@ -83,7 +83,12 @@ const FeeTable = ({
       </Table>
       <p className="source text-muted text-right font-weight-light">
         Fee estimates by{' '}
-        <a href="https://whatthefee.io" className="text-reset" target="_black">
+        <a
+          href="https://whatthefee.io"
+          className="text-reset"
+          target="_black"
+          rel="noopener noreferrer"
+        >
           WhatTheFee.io
         </a>
       </p>
