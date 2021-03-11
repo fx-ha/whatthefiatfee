@@ -33,6 +33,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Tools
 - Bootstrap
+- Date-Fns
 - Next.js
 - React
 - React Bootstrap
