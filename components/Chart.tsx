@@ -11,7 +11,7 @@ import {
   YAxis,
 } from 'recharts'
 
-import { calculateFee } from '../lib/calculator'
+import { calculateFee, round } from '../lib/calculator'
 import { FiatContext } from '../components/FiatProvider'
 import { HistoricalDataType } from '../lib/types'
 
@@ -21,6 +21,18 @@ const Chart = ({
   historicalData: HistoricalDataType[]
 }): JSX.Element => {
   const { currency } = useContext(FiatContext)
+  let currencySymbol = '$'
+  switch (currency) {
+    case 'eur':
+      currencySymbol = '€'
+      break
+    case 'gbp':
+      currencySymbol = '£'
+      break
+    case 'btc':
+      currencySymbol = '₿'
+      break
+  }
 
   const data = historicalData.map((element) => {
     let fiatValue = element.usd
@@ -37,9 +49,9 @@ const Chart = ({
         month: 'short',
         day: 'numeric',
       }),
-      slow: calculateFee(element.min_fee, fiatValue),
-      medium: calculateFee(element.median_fee, fiatValue),
-      fast: calculateFee(element.max_fee, fiatValue),
+      '24h': round(calculateFee(element.min_fee, fiatValue)),
+      '4h': round(calculateFee(element.median_fee, fiatValue)),
+      '0.5h': round(calculateFee(element.max_fee, fiatValue)),
     })
   })
 
@@ -61,24 +73,30 @@ const Chart = ({
         <Legend />
         <Area
           type="monotone"
-          dataKey="fast"
+          dataKey="0.5h"
           stackId="3"
           stroke="#e67b13"
           fill="#e67b13"
+          unit={currencySymbol}
+          animationDuration={1000}
         />
         <Area
           type="monotone"
-          dataKey="medium"
+          dataKey="4h"
           stackId="2"
           stroke="#078c76"
           fill="#078c76"
+          unit={currencySymbol}
+          animationDuration={1000}
         />
         <Area
           type="monotone"
-          dataKey="slow"
+          dataKey="24h"
           stackId="1"
           stroke="#5a38b1"
           fill="#5a38b1"
+          unit={currencySymbol}
+          animationDuration={1000}
         />
       </AreaChart>
     </ResponsiveContainer>

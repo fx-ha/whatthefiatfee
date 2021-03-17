@@ -16,6 +16,23 @@ export const convertToFiat = (fee: number, locale: string): string => {
       })
 }
 
+export const round = (fee: number): number => {
+  const { currency } = useContext(FiatContext)
+  return currency === 'btc'
+    ? Number(
+        fee.toLocaleString('en-US', {
+          minimumFractionDigits: 5,
+          maximumFractionDigits: 5,
+        })
+      )
+    : Number(
+        fee.toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })
+      )
+}
+
 export const calculateFee = (fee: number, fiatValue: number): number => {
   const { currency } = useContext(FiatContext)
   const { txnSize } = useContext(TxnSizeContext)
