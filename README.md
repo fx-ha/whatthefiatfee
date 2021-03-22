@@ -20,7 +20,7 @@ Bitcoin fee estimation (provided by [WhatTheFee.io](https://whatthefee.io/)) and
 npm install
 ```
 
-3. Check if it runs on the development server:
+3. Check if it runs on the dev server:
 ```bash
 npm run dev
 ```
@@ -36,6 +36,3 @@ npm start
 ```
 
 6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Feedback
-> "Great Bitcoin fee website" - [Paul Sztorc](https://twitter.com/Truthcoin/status/1368965437275389953)
