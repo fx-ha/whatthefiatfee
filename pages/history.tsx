@@ -29,16 +29,14 @@ const history = ({
         <meta name="description" content="Bitcoin fee history" />
       </Head>
 
-      <main>
-        <Header
-          currentData={currentData}
-          heading="BTC fee history"
-          btnText="Future"
-          href="/"
-        />
-        <TxnSizeSlider />
-        <Chart historicalData={historicalData} />
-      </main>
+      <Header
+        currentData={currentData}
+        heading="BTC fee history"
+        btnText="Future"
+        href="/"
+      />
+      <TxnSizeSlider />
+      <Chart historicalData={historicalData} />
     </Layout>
   )
 }
