@@ -30,32 +30,30 @@ const Home = ({
         <meta name="description" content="Bitcoin fee estimation in fiat" />
       </Head>
 
-      <main>
-        <Header
-          currentData={currentData[0]}
-          heading="BTC fee estimation"
-          btnText="History"
-          href="/history"
-        />
-        <TxnSizeSlider />
-        <FeeTable
-          fees={fees}
-          currentData={currentData}
-          txnSize={txnSize}
-          currency={currency}
-        />
-      </main>
+      <Header
+        currentData={currentData[0]}
+        heading="BTC fee estimation"
+        btnText="History"
+        href="/history"
+      />
+      <TxnSizeSlider />
+      <FeeTable
+        fees={fees}
+        currentData={currentData}
+        txnSize={txnSize}
+        currency={currency}
+      />
     </Layout>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   const feeRes = await fetch(`${process.env.API_URL}/whatthefiatfee/fees/`)
-  const fees = await feeRes.json()
-
   const currentDataRes = await fetch(
     `${process.env.API_URL}/whatthefiatfee/currentdata/`
   )
+
+  const fees = await feeRes.json()
   const currentData = await currentDataRes.json()
 
   return {
