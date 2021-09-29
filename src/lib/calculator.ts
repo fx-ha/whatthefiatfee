@@ -1,10 +1,8 @@
-import { useContext } from 'react'
-
-import { FiatContext } from '../components/FiatProvider'
-import { TxnSizeContext } from '../components/TxnSizeProvider'
-
-export const convertToFiat = (fee: number, locale: string): string => {
-  const { currency } = useContext(FiatContext)
+export const convertToFiat = (
+  fee: number,
+  locale: string,
+  currency: string
+): string => {
   return currency === 'btc'
     ? fee.toLocaleString(locale, {
         minimumFractionDigits: 5,
@@ -16,8 +14,7 @@ export const convertToFiat = (fee: number, locale: string): string => {
       })
 }
 
-export const round = (fee: number): number => {
-  const { currency } = useContext(FiatContext)
+export const round = (fee: number, currency: string): number => {
   return currency === 'btc'
     ? Number(
         fee.toLocaleString('en-US', {
@@ -33,9 +30,12 @@ export const round = (fee: number): number => {
       )
 }
 
-export const calculateFee = (fee: number, fiatValue: number): number => {
-  const { currency } = useContext(FiatContext)
-  const { txnSize } = useContext(TxnSizeContext)
+export const calculateFee = (
+  fee: number,
+  fiatValue: number,
+  currency: string,
+  txnSize: number
+): number => {
   return currency === 'btc'
     ? (fee * txnSize) / 100000000
     : (fee * txnSize * fiatValue) / 100000000

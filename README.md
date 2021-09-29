@@ -3,36 +3,16 @@
 Bitcoin fee estimation (provided by [WhatTheFee.io](https://whatthefee.io/)) and fee history in USD, EUR, GBP
 
 ## Tools
+- Chakra UI
 - Date-Fns
 - Next.js
 - React
-- React Bootstrap
 - Recharts
-- Sass
 - Typescript
 
-## Setup
+## Backend
+- Github: github.com/fx-ha/whatthefiatfee-backend
+- Live: whatthefiatfee.herokuapp.com/graphql
 
-1. Clone project, add API URL to .env.local
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Check if it runs on the dev server:
-```bash
-npm run dev
-```
-
-4. Build the app for production:
-```bash
-npm run build
-```
-
-5. Run the built app in production mode:
-```bash
-npm start
-```
-
-6. Open [http://localhost:3000](http://localhost:3000)
+## Feedback
+> "Great Bitcoin fee website" - [Paul Sztorc](https://twitter.com/Truthcoin/status/1368965437275389953)

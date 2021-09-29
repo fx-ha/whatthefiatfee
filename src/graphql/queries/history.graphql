@@ -1,0 +1,12 @@
+query FeeHistory {
+  getFeeHistory {
+    createdAt
+    eur
+    gbp
+    id
+    maxFee
+    midFee
+    minFee
+    usd
+  }
+}
