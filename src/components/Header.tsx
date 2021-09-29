@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import NextLink from 'next/link'
 import {
   Button,
@@ -8,20 +7,10 @@ import {
   Stack,
   Spacer,
   useColorMode,
-  Text,
   Box,
 } from '@chakra-ui/react'
-import {
-  BiBitcoin,
-  BiDollar,
-  BiEuro,
-  BiPound,
-  BiSun,
-  BiMoon,
-} from 'react-icons/bi'
-import { formatDistanceToNow } from 'date-fns'
-import { FiatContext } from '../context/FiatContext'
-import { TxnSizeSlider } from '.'
+import { BiSun, BiMoon } from 'react-icons/bi'
+import { FiatSelection, Infobox, TxnSizeSlider } from '.'
 import { Rate } from '../generated/graphql'
 
 type HeaderProps = {
@@ -32,30 +21,8 @@ type HeaderProps = {
 }
 
 const Header = ({ rate, heading, btnText, href }: HeaderProps) => {
-  const { currency, setCurrency } = useContext(FiatContext)
   const { colorMode, toggleColorMode } = useColorMode()
-
   const isDark = colorMode === 'dark'
-
-  let fiatValue = rate.usd.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'usd',
-  })
-
-  switch (currency) {
-    case 'eur':
-      fiatValue = rate.eur.toLocaleString('de-DE', {
-        style: 'currency',
-        currency,
-      })
-      break
-    case 'gbp':
-      fiatValue = rate.gbp.toLocaleString('en-GB', {
-        style: 'currency',
-        currency,
-      })
-      break
-  }
 
   return (
     <>
@@ -64,59 +31,10 @@ const Header = ({ rate, heading, btnText, href }: HeaderProps) => {
           {heading}
         </Heading>
         <Spacer />
-        <Stack direction="row" spacing={0.5}>
-          <IconButton
-            isActive={currency === 'btc'}
-            variant="outline"
-            colorScheme="orange"
-            aria-label="BTC"
-            fontSize="20px"
-            icon={<BiBitcoin />}
-            size="sm"
-            onClick={() => setCurrency('btc')}
-          />
-          <IconButton
-            isActive={currency === 'usd'}
-            variant="outline"
-            colorScheme="orange"
-            aria-label="USD"
-            fontSize="20px"
-            icon={<BiDollar />}
-            size="sm"
-            onClick={() => setCurrency('usd')}
-          />
-          <IconButton
-            isActive={currency === 'eur'}
-            variant="outline"
-            colorScheme="orange"
-            aria-label="EUR"
-            fontSize="20px"
-            icon={<BiEuro />}
-            size="sm"
-            onClick={() => setCurrency('eur')}
-          />
-          <IconButton
-            isActive={currency === 'gbp'}
-            variant="outline"
-            colorScheme="orange"
-            aria-label="GBP"
-            fontSize="20px"
-            icon={<BiPound />}
-            size="sm"
-            onClick={() => setCurrency('gbp')}
-          />
-        </Stack>
+        <FiatSelection />
       </Flex>
       <Flex marginTop={2} alignItems="flex-start">
-        <Box>
-          <Text>
-            Last update:{' '}
-            {formatDistanceToNow(new Date(Number(rate.updatedAt)), {
-              addSuffix: true,
-            })}
-          </Text>
-          <Text>1 BTC = {fiatValue}</Text>
-        </Box>
+        <Infobox rate={rate} />
         <Spacer />
         <Stack direction="row" spacing={0.5}>
           <IconButton
