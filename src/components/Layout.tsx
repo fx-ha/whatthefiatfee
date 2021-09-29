@@ -17,6 +17,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           content="Bitcoin transaction fee estimation in fiat"
         />
         <meta name="og:title" content={siteTitle} />
+        <title>{siteTitle}</title>
       </Head>
 
       <Flex
