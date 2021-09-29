@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, createContext } from 'react'
 
 type TxnSizeContextType = {
@@ -6,13 +5,9 @@ type TxnSizeContextType = {
   setTxnSize: (value: number) => void
 }
 
-export const TxnSizeContext = createContext<TxnSizeContextType>(undefined)
+export const TxnSizeContext = createContext({} as TxnSizeContextType)
 
-const TxnSizeProvider = ({
-  children,
-}: {
-  children: React.ReactNode
-}): JSX.Element => {
+const TxnSizeProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [txnSize, setTxnSize] = useState(225)
 
   return (

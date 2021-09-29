@@ -1,0 +1,8 @@
+query Fees {
+    getFees {
+    amount
+    id
+    probability
+    time
+  }
+}

@@ -1,27 +1,27 @@
 import { useContext } from 'react'
-
 import {
   Area,
   AreaChart,
   CartesianGrid,
-  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts'
-
 import { calculateFee, round } from '../lib/calculator'
-import { FiatContext } from '../components/FiatProvider'
-import { HistoricalDataType } from '../lib/types'
+import { FiatContext } from '../context/FiatContext'
+import { TxnSizeContext } from '../context/TxnSizeContext'
+import { FeeHistory } from '../generated/graphql'
 
-const Chart = ({
-  historicalData,
-}: {
-  historicalData: HistoricalDataType[]
-}): JSX.Element => {
+type ChartProps = {
+  feeHistory: FeeHistory[]
+}
+
+const Chart = ({ feeHistory }: ChartProps) => {
   const { currency } = useContext(FiatContext)
+  const { txnSize } = useContext(TxnSizeContext)
   let currencySymbol = '$'
+
   switch (currency) {
     case 'eur':
       currencySymbol = '€'
@@ -34,8 +34,9 @@ const Chart = ({
       break
   }
 
-  const data = historicalData.map((element) => {
+  const data = feeHistory.map((element) => {
     let fiatValue = element.usd
+
     switch (currency) {
       case 'eur':
         fiatValue = element.eur
@@ -44,14 +45,24 @@ const Chart = ({
         fiatValue = element.gbp
         break
     }
+
     return Object.create({
-      name: new Date(element.date).toLocaleDateString('en-US', {
+      name: new Date(Number(element.createdAt)).toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
       }),
-      '24h': round(calculateFee(element.min_fee, fiatValue)),
-      '4h': round(calculateFee(element.median_fee, fiatValue)),
-      '0.5h': round(calculateFee(element.max_fee, fiatValue)),
+      '24h': round(
+        calculateFee(element.minFee, fiatValue, currency, txnSize),
+        currency
+      ),
+      '4h': round(
+        calculateFee(element.midFee, fiatValue, currency, txnSize),
+        currency
+      ),
+      '0.5h': round(
+        calculateFee(element.maxFee, fiatValue, currency, txnSize),
+        currency
+      ),
     })
   })
 
@@ -70,7 +81,6 @@ const Chart = ({
         <XAxis dataKey="name" />
         <YAxis width={39} />
         <Tooltip />
-        <Legend />
         <Area
           type="monotone"
           dataKey="0.5h"

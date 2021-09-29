@@ -1,18 +1,13 @@
-import React from 'react'
 import { useState, createContext } from 'react'
 
 type FiatContextType = {
   currency: string
-  setCurrency: (value: string) => void
+  setCurrency: (currency: string) => void
 }
 
-export const FiatContext = createContext<FiatContextType>(undefined)
+export const FiatContext = createContext({} as FiatContextType)
 
-const FiatProvider = ({
-  children,
-}: {
-  children: React.ReactNode
-}): JSX.Element => {
+const FiatProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [currency, setCurrency] = useState('usd')
 
   return (

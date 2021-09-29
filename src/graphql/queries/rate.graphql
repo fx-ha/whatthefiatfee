@@ -1,0 +1,9 @@
+query Rate {
+  getRate {
+    eur
+    gbp
+    id
+    updatedAt
+    usd
+  }
+}
