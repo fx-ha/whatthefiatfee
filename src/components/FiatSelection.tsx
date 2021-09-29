@@ -1,5 +1,5 @@
-import { IconButton, Stack } from '@chakra-ui/react'
 import { useContext } from 'react'
+import { IconButton, Stack } from '@chakra-ui/react'
 import { BiBitcoin, BiDollar, BiEuro, BiPound } from 'react-icons/bi'
 import { FiatContext } from '../context/FiatContext'
 

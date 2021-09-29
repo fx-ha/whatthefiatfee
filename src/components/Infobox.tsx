@@ -1,6 +1,6 @@
+import { useContext } from 'react'
 import { Box, Text } from '@chakra-ui/layout'
 import { formatDistanceToNow } from 'date-fns'
-import { useContext } from 'react'
 import { FiatContext } from '../context/FiatContext'
 import { Rate } from '../generated/graphql'
 
