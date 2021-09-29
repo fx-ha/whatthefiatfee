@@ -47,12 +47,7 @@ const Header = ({ rate, heading, btnText, href }: HeaderProps) => {
             onClick={toggleColorMode}
           />
           <NextLink href={href}>
-            <Button
-              size="sm"
-              colorScheme="orange"
-              variant="outline"
-              alignSelf="end"
-            >
+            <Button size="sm" colorScheme="orange" variant="outline">
               {btnText}
             </Button>
           </NextLink>
