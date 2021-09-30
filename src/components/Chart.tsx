@@ -69,7 +69,7 @@ const Chart = ({ feeHistory }: ChartProps) => {
   return (
     <ResponsiveContainer width="100%" height={400} minWidth="0">
       <AreaChart
-        data={data.reverse()}
+        data={data}
         margin={{
           top: 0,
           right: 0,
