@@ -11,8 +11,8 @@ Bitcoin fee estimation (provided by [WhatTheFee.io](https://whatthefee.io/)) and
 - Typescript
 
 ## Backend
-- Github: github.com/fx-ha/whatthefiatfee-backend
-- Live: whatthefiatfee.herokuapp.com/graphql
+- [Github](https://github.com/fx-ha/whatthefiatfee-backend)
+- [Live](https://whatthefiatfee.herokuapp.com/graphql)
 
 ## Feedback
 > "Great Bitcoin fee website" - [Paul Sztorc](https://twitter.com/Truthcoin/status/1368965437275389953)
