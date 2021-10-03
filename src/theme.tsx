@@ -22,6 +22,9 @@ const theme = extendTheme({
   fonts,
   breakpoints,
   config,
+  shadows: {
+    outline: '0 0 0 1px orange',
+  },
 })
 
 export default theme
