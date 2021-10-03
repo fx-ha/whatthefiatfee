@@ -39,20 +39,25 @@ const TxnSizeCalculator = () => {
 
   const outpoint = 36
   const scriptsigLengthSmall = 1
-  const p2pkhSs = 107
+  const scriptsigLengthBig = 3
+  const scriptpubkeyLength = 1
   const nsequence = 4
   const nvalue = 8
-  const scriptpubkeyLength = 1
+
+  const p2pkhSs = 107
   const p2pkhSpk = 25
+
   const p2wpkhWitness = 27
   const p2wpkhSpk = 22
+
   const p2sh23Ss = 254
   const p2sh23Spk = 23
+
   const p2wsh23Witness = 63.5
   const p2wsh23Spk = 34
+
   const p2trWitness = 16.5
   const p2trSpk = 34
-  const scriptsigLengthBig = 3
 
   const txnTypes = [
     {
