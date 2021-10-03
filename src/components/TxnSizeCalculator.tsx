@@ -28,7 +28,7 @@ import {
   Tr,
   useDisclosure,
 } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { BsQuestionCircle } from 'react-icons/bs'
 
 const TxnSizeCalculator = () => {
