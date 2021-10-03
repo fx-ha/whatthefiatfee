@@ -18,7 +18,9 @@ const TxnSizeSlider = () => {
         Transaction size {txnSize} vbytes
         <TxnSizeCalculator />
       </Box>
+
       <Slider
+        mt={2}
         aria-label="transaction size"
         colorScheme="orange"
         defaultValue={txnSize}

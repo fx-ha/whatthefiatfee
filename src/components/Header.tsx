@@ -33,7 +33,8 @@ const Header = ({ rate, heading, btnText, href }: HeaderProps) => {
         <Spacer />
         <FiatSelection />
       </Flex>
-      <Flex marginTop={2} alignItems="flex-start">
+
+      <Flex marginTop={4} alignItems="flex-start">
         <Infobox rate={rate} />
         <Spacer />
         <Stack direction="row" spacing={0.5}>
@@ -53,7 +54,8 @@ const Header = ({ rate, heading, btnText, href }: HeaderProps) => {
           </NextLink>
         </Stack>
       </Flex>
-      <Box marginTop={3}>
+
+      <Box marginTop={4}>
         <TxnSizeSlider />
       </Box>
     </>
