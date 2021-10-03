@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Divider,
   FormControl,
@@ -176,38 +177,42 @@ const TxnSizeCalculator = () => {
 
             <Divider />
 
-            <Text my={3}>Total size: {totalSize} vbytes</Text>
+            <Text my={3}>
+              <b>Total size:</b> {totalSize} vbytes
+            </Text>
 
-            <Table>
-              <Thead>
-                <Tr>
-                  <Th>Part</Th>
-                  <Th>Count</Th>
-                  <Th>Size (vbytes)</Th>
-                  <Th>Total vbytes</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                <Tr>
-                  <Th>Overhead</Th>
-                  <Td>1</Td>
-                  <Td>{overhead}</Td>
-                  <Td>{overhead}</Td>
-                </Tr>
-                <Tr>
-                  <Th>Inputs</Th>
-                  <Td>{inputs}</Td>
-                  <Td>{inputSize}</Td>
-                  <Td>{totalInputSize}</Td>
-                </Tr>
-                <Tr>
-                  <Th>Outputs</Th>
-                  <Td>{outputs}</Td>
-                  <Td>{outputSize}</Td>
-                  <Td>{totalOutputSize}</Td>
-                </Tr>
-              </Tbody>
-            </Table>
+            <Box overflowX="auto">
+              <Table size="sm">
+                <Thead>
+                  <Tr>
+                    <Th>Part</Th>
+                    <Th>Count</Th>
+                    <Th>Size (vbytes)</Th>
+                    <Th>Total vbytes</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  <Tr>
+                    <Th>Overhead</Th>
+                    <Td>1</Td>
+                    <Td>{overhead}</Td>
+                    <Td>{overhead}</Td>
+                  </Tr>
+                  <Tr>
+                    <Th>Inputs</Th>
+                    <Td>{inputs}</Td>
+                    <Td>{inputSize}</Td>
+                    <Td>{totalInputSize}</Td>
+                  </Tr>
+                  <Tr>
+                    <Th>Outputs</Th>
+                    <Td>{outputs}</Td>
+                    <Td>{outputSize}</Td>
+                    <Td>{totalOutputSize}</Td>
+                  </Tr>
+                </Tbody>
+              </Table>
+            </Box>
           </ModalBody>
 
           <ModalFooter>

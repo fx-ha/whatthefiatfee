@@ -13,9 +13,11 @@ const Index = ({ fees, rate }: { fees: Fee[]; rate: Rate }) => {
           btnText="History"
           href="/history"
         />
-        <Box overflowX="auto" marginTop={2}>
+
+        <Box overflowX="auto" marginTop={3}>
           <FeeTable fees={fees} rate={rate} />
         </Box>
+
         <Flex marginTop={1}>
           <Spacer />
           <Text color="GrayText" fontSize="xs">
