@@ -1,15 +1,6 @@
 import Head from 'next/head'
-import {
-  Box,
-  Container,
-  Divider,
-  Flex,
-  Icon,
-  Link,
-  Tooltip,
-  useColorMode,
-} from '@chakra-ui/react'
-import { FaGithub } from 'react-icons/fa'
+import { Container, Flex, useColorMode } from '@chakra-ui/react'
+import { Footer } from '.'
 
 export const siteTitle = 'WhatTheFiatFee'
 
@@ -36,23 +27,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         justifyContent="flex-start"
         bg={bgColor[colorMode]}
         color={color[colorMode]}
-        height="100vh"
+        minHeight="100vh"
       >
         <Container as="main" maxW="3xl">
           {children}
         </Container>
 
-        <Container as="footer" maxW="3xl" mt="auto">
-          <Divider mb={1} />
-
-          <Box mb={1} textAlign="center">
-            <Tooltip label="Code on Github">
-              <Link isExternal href="https://github.com/fx-ha/whatthefiatfee">
-                <Icon as={FaGithub} />
-              </Link>
-            </Tooltip>
-          </Box>
-        </Container>
+        <Footer />
       </Flex>
     </>
   )
