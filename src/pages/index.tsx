@@ -1,33 +1,31 @@
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client'
-import { Flex, Container, Spacer, Box, Text, Link } from '@chakra-ui/react'
+import { Box, Flex, Link, Spacer, Text } from '@chakra-ui/react'
 import { Fee, Rate } from '../generated/graphql'
 import { Header, Layout, FeeTable } from '../components'
 
 const Index = ({ fees, rate }: { fees: Fee[]; rate: Rate }) => {
   return (
     <Layout>
-      <Container as="main" maxW="3xl">
-        <Header
-          rate={rate}
-          heading="BTC fee estimation"
-          btnText="History"
-          href="/history"
-        />
+      <Header
+        rate={rate}
+        heading="BTC fee estimation"
+        btnText="History"
+        href="/history"
+      />
 
-        <Box overflowX="auto" marginTop={3}>
-          <FeeTable fees={fees} rate={rate} />
-        </Box>
+      <Box overflowX="auto" mt={3}>
+        <FeeTable fees={fees} rate={rate} />
+      </Box>
 
-        <Flex marginTop={1}>
-          <Spacer />
-          <Text color="GrayText" fontSize="xs">
-            Fee estimates by{' '}
-            <Link href="https://whatthefee.io" isExternal>
-              WhatTheFee.io
-            </Link>
-          </Text>
-        </Flex>
-      </Container>
+      <Flex mt={1}>
+        <Spacer />
+        <Text color="GrayText" fontSize="xs">
+          Fee estimates by{' '}
+          <Link href="https://whatthefee.io" isExternal>
+            WhatTheFee.io
+          </Link>
+        </Text>
+      </Flex>
     </Layout>
   )
 }
