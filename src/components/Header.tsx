@@ -26,7 +26,7 @@ const Header = ({ rate, heading, btnText, href }: HeaderProps) => {
 
   return (
     <>
-      <Flex marginTop={5}>
+      <Flex mt={5}>
         <Heading as="h1" fontSize={{ base: 'md', sm: '3xl' }}>
           {heading}
         </Heading>
@@ -34,7 +34,7 @@ const Header = ({ rate, heading, btnText, href }: HeaderProps) => {
         <FiatSelection />
       </Flex>
 
-      <Flex marginTop={4} alignItems="flex-start">
+      <Flex mt={4} alignItems="flex-start">
         <Infobox rate={rate} />
         <Spacer />
         <Stack direction="row" spacing={0.5}>
@@ -55,7 +55,7 @@ const Header = ({ rate, heading, btnText, href }: HeaderProps) => {
         </Stack>
       </Flex>
 
-      <Box marginTop={4}>
+      <Box mt={4}>
         <TxnSizeSlider />
       </Box>
     </>
