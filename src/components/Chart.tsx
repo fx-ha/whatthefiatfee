@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import { calculateFee, round } from '../lib/calculator'
+import { calculateFee, round } from '../utils/calculator'
 import { FiatContext } from '../context/FiatContext'
 import { TxnSizeContext } from '../context/TxnSizeContext'
 import { FeeHistory } from '../generated/graphql'

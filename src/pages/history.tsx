@@ -1,7 +1,8 @@
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client'
+import { gql } from '@apollo/client'
 import { Box } from '@chakra-ui/react'
 import { FeeHistory } from '../generated/graphql'
 import { Header, Layout, Chart } from '../components'
+import { client } from '../utils/apolloClient'
 
 const History = ({ feeHistory }: { feeHistory: FeeHistory[] }) => {
   return (
@@ -25,11 +26,6 @@ const History = ({ feeHistory }: { feeHistory: FeeHistory[] }) => {
     </Layout>
   )
 }
-
-const client = new ApolloClient({
-  uri: 'https://whatthefiatfee.herokuapp.com/graphql',
-  cache: new InMemoryCache(),
-})
 
 export const getStaticProps = async () => {
   const { data } = await client.query({
