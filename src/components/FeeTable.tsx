@@ -3,8 +3,8 @@ import { Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react'
 import { TxnSizeContext } from '../context/TxnSizeContext'
 import { FiatContext } from '../context/FiatContext'
 import { Fee, Rate } from '../generated/graphql'
-import { calculateFee, convertToFiat } from '../lib/calculator'
-import { TableHeader } from '../lib/types'
+import { calculateFee, convertToFiat } from '../utils/calculator'
+import { TableHeader } from '../utils/types'
 
 type FeeTableProps = {
   fees: Fee[]
