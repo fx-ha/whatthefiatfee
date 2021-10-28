@@ -3,5 +3,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "editor.bracketPairColorization.enabled": true
+  "editor.bracketPairColorization.enabled": true,
+  "conventionalCommits.scopes": [
+    "deps"
+  ]
 }
